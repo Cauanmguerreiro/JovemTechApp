@@ -1,4 +1,4 @@
-import { criarAtividade } from '../services/atividadeServices.js'
+import { criarAtividade, buscarAtividades } from '../services/atividadeServices.js'
 
 
 export function criarAtividadeController(req, res){
@@ -9,5 +9,14 @@ export function criarAtividadeController(req, res){
 }catch (error){
     console.log(error)
     res.status(500).send('Erro ao criar atividade')
+}
+}
+export async function buscarAtividadesController(req, res){
+    try{
+    const atividades = await buscarAtividades()
+    res.status(200).json(atividades)
+    }catch (error){
+    console.log(error)
+    res.status(500).send('Erro buscar ao buscar atividades')
 }
 }

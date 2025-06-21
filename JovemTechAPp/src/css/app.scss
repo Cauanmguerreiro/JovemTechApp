@@ -1,4 +1,310 @@
-// app global css in SCSS form
-*{
-    font-family: 'Poppins', sans-serif;
+// ========================
+// 🌐 FONTES GLOBAIS
+// ========================
+* {
+  font-family: 'Poppins', sans-serif;
+}
+
+// ========================
+// 🏠 HOME PAGE LAYOUT
+// ========================
+// ========================
+// 🏠 HOME PAGE LAYOUT
+// ========================
+.home-page-layout {
+  // Header padrão com gradiente
+  .gradient-header {
+    background: linear-gradient(to bottom, #e26446, #d23b6c); // exemplo fixo ou use $primary, $secondary
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .menu-drawer {
+    width: 10%;           // diminui a largura para 10%
+    max-width: 20px;     // limite máximo de largura menor
+    background: linear-gradient(to bottom, $secondary, $primary);  // cor laranja do fundo
+    color: white;
+    border-right: none;
+    box-shadow: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100%;
+
+    .top-buttons,
+    .bottom-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .drawer-btn {
+      color: white;
+      font-weight: 700;
+      font-size: 1rem;
+      text-transform: uppercase;
+      border-radius: 4px;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;        /* centraliza verticalmente */
+      justify-content: center;    /* centraliza horizontalmente */
+      position: relative;
+      cursor: pointer;
+      user-select: none;
+      transition: background-color 0.3s ease;
+      min-height: 48px;           /* altura mínima para facilitar alinhamento */
+
+      &:hover {
+        background-color: #d06c3c; // hover mais escuro
+      }
+
+      .btn-text {
+        flex: none;               /* evita que texto ocupe todo espaço */
+        text-align: center;
+        width: 100%;              /* ocupa toda largura para centralizar */
+      }
+
+      q-img {
+        position: absolute;
+        right: 16px;
+        width: 24px;
+        height: 24px;
+        top: 50%;
+        transform: translateY(-50%);
+        flex-shrink: 0;
+      }
+    }
+  }
+
+  .header-logo {
+    height: 40px;
+    max-width: 180px;
+    object-fit: contain;
+  }
+}
+
+// Menu lateral (drawer) para garantir largura consistente
+.q-drawer {
+  width: 200px;           // largura fixa menor
+  max-width: none;        // sem limite máximo
+  background-color: $secondary;
+  box-shadow: 2px 0 6px rgba(0, 0, 0, 0.1);
+  padding-top: 20px;
+}
+
+// Conteúdo principal da página
+.q-page-container {
+  background-color: #f4f6f8;
+  padding: 24px;
+  min-height: 100vh;
+}
+
+// Botão de menu
+.q-btn[icon="menu"] {
+  color: white;
+}
+
+
+// Drawer com gradiente estilizado
+.menu-drawer {
+  width: 180px;      // largura fixa menor, mais simples para controlar
+  max-width: none;   // desativa limite máximo
+  background: linear-gradient(to bottom, $secondary, $primary);
+  color: white;
+  border-right: none;
+  box-shadow: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 100%;
+
+  .top-buttons,
+  .bottom-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .drawer-btn {
+    color: white;
+    font-weight: 700;
+    font-size: 1rem;
+    text-transform: uppercase;
+    border-radius: 4px;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.3s ease;
+    min-height: 48px;
+
+    &:hover {
+      background-color: #d06c3c;
+    }
+
+    .btn-text {
+      flex: none;
+      text-align: center;
+      width: 100%;
+    }
+
+    q-img {
+      position: absolute;
+      right: 16px;
+      width: 24px;
+      height: 24px;
+      top: 50%;
+      transform: translateY(-50%);
+      flex-shrink: 0;
+    }
+  }
+
+
+}
+
+
+
+// ========================
+// 🔐 LOGIN PAGE LAYOUT
+// ========================
+.login-page {
+  padding-top: 5%;
+}
+
+.login-container {
+  width: 100%;
+  max-width: 1200px;
+}
+
+.login-form {
+  width: 90%;
+  max-width: 1000px;
+  background-color: #7973731f;
+  border-radius: 5%;
+  box-shadow: 8px 8px 8px $accent;
+  padding: 2rem;
+  height: auto;
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+    border-radius: 3%;
+  }
+}
+
+.login-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+  box-shadow: 2px 5px 5px $accent;
+}
+
+// ========================
+// 📝 TEXTO INFORMATIVO LOGIN
+// ========================
+.login-info {
+  padding: 0 1rem;
+
+  h6 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #000000;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+
+    span {
+      color: $accent;
+      font-weight: 900;
+      font-size: 2.2rem;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: $primary;
+        cursor: default;
+      }
+    }
+  }
+
+  p {
+    font-family: 'Open Sans', Arial, sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #333333;
+    max-width: 700px;
+    text-align: justify;
+    padding-right: 1rem;
+    user-select: text;
+  }
+}
+
+// ========================
+// 🔻 HEADER E FOOTER LOGIN
+// ========================
+.login-page-layout {
+  .header-logo {
+    width: 180px;
+    max-width: 90%;
+    height: 40px;
+  }
+
+  .footer-toolbar {
+    border-top: 1px solid #ccc;
+    padding: 0;
+  }
+
+  .footer-logo {
+    width: 180px;
+    max-width: 90%;
+    height: auto;
+  }
+
+  .gradient-header {
+    background: linear-gradient(to bottom, $secondary, $primary);
+    box-shadow: 0 2px 20px $primary;
+  }
+}
+.footer-left {
+  /* deixa os ícones alinhados em linha com espaço */
+  display: flex;
+  gap: 12px;
+}
+
+.social-icon {
+  width: 32px;   /* tamanho pequeno */
+  height: 32px;
+  cursor: pointer;
+}
+
+.footer-right {
+  display: flex;
+  align-items: center;    /* já está centralizando verticalmente */
+  gap: 16px;
+}
+
+
+.footer-logo {
+  width: 80px;   /* tamanho da imagem maior */
+  height: auto;
+  object-fit: contain;
+}
+
+.footer-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.footer-text-line1 {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #333;
+}
+
+.footer-text-line2 {
+  font-size: 0.85rem;
+  color: #666;
 }

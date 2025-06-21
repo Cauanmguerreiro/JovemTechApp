@@ -1,33 +1,8 @@
 <template>
-  <q-page class="q-pa-lg flex flex-center" style="padding-top: 5%">
-    <div class="row items-center justify-around" 
-    style=
-    "width: 100%; 
-    max-width: 1200px;">
-      <!-- Texto à esquerda -->
-      <div class="col-12 col-md-6 q-pa-md">
-              <img src="~assets/images/aulafoto.png" 
-              alt="Aula de tecnologia" style="
-              width: 100%; 
-              height: auto; 
-              display: block; 
-              border-radius: 3px;">
-        <h1>Jovem Tech</h1>
-        <p>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolore in ex, mollitia, ipsa voluptatibus
-          necessitatibus minus debitis saepe reprehenderit laborum cupiditate obcaecati, libero aliquam dolores
-          dicta sapiente distinctio perferendis odit.
-        </p>
-      </div>
-
-      <!-- Formulário à direita -->
-      <div class="col-12 col-md-5 q-pa-md" 
-      style=
-      "
-      max-width: 1000px;
-      background-color: #ece5da;
-      border-radius: 5%;
-      ">
+  <q-page class="q-pa-lg flex flex-center login-page">
+    <div class="row items-center justify-around login-container">
+      
+      <div class="col-12 col-md-5 q-pa-md login-form">
         <form @submit.prevent.stop="onSubmit" @reset.prevent.stop="onReset" class="q-gutter-md">
           <q-input
             color="accent"
@@ -40,10 +15,10 @@
           />
 
           <q-input 
-          color="accent"
-          v-model="password" 
-          filled :type="isPwd ? 'password' : 'text'" 
-          label="Escreva sua senha">
+            color="accent"
+            v-model="password" 
+            filled :type="isPwd ? 'password' : 'text'" 
+            label="Escreva sua senha">
             <template v-slot:append>
               <q-icon
                 :name="isPwd ? 'visibility_off' : 'visibility'"
@@ -61,9 +36,29 @@
           </div>
         </form>
       </div>
+      
+      <!-- AQUI adicionamos a classe login-info -->
+      <div class="col-12 col-md-6 q-pa-md login-info">
+        <img src="~assets/images/aulafoto.png" 
+             alt="Aula de tecnologia" 
+             class="login-image">
+        <h6><span>J</span>OVEM <span>T</span>ECH</h6>
+        <p>
+          O Jovem Tech é um programa comunitário que incentiva a cultura de inovação e a capacitação inicial de jovens em Tecnologia da Informação e Computação (TI&C). Nosso objetivo é aproximar jovens da comunidade Mário Quintana e Zona Norte de Porto Alegre do universo digital, preparando-os para os desafios acadêmicos, sociais e profissionais.
+
+          As aulas são ministradas nos laboratórios de informática da UniRitter FAPA por tutores e docentes, abordando temas essenciais como cidadania digital, mercado de trabalho e tecnologias atuais.
+
+          Para potencializar ainda mais esse aprendizado, desenvolvemos esta plataforma exclusiva, onde você, aluno do Jovem Tech, poderá acessar conteúdos completos, acompanhar aulas, realizar atividades e interagir com o universo da tecnologia de forma prática e dinâmica.
+
+        Explore nossos cursos, desafie-se nas atividades e conecte-se com o futuro da TI! Aqui, o conhecimento está ao seu alcance para transformar seu potencial em realidade.
+        </p>
+      </div>
+      
     </div>
   </q-page>
 </template>
+
+
 
 <script>
 import { defineComponent, ref } from 'vue';

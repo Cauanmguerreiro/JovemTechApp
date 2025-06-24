@@ -79,6 +79,8 @@
     height: 40px;
     max-width: 180px;
     object-fit: contain;
+    display: block;
+    margin: 0 auto;
   }
 }
 
@@ -194,11 +196,12 @@
 }
 
 .login-image {
-  width: 100%;
-  height: auto;
-  display: block;
+  max-width: 220px;
+  max-height: 180px;
   border-radius: 12px;
-  box-shadow: 2px 5px 5px $accent;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto;
 }
 
 // ========================
@@ -246,20 +249,48 @@
 // ========================
 .login-page-layout {
   .header-logo {
-    width: 180px;
-    max-width: 90%;
     height: 40px;
+    max-width: 180px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
   }
 
   .footer-toolbar {
-    border-top: 1px solid #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 44px;
     padding: 0;
   }
 
+  .footer-left {
+    display: flex;
+    align-items: center;
+    min-width: 120px;
+  }
+
+  .footer-center {
+    flex: 1 1 0%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   .footer-logo {
-    width: 180px;
-    max-width: 90%;
-    height: auto;
+    width: 15% !important;
+    height: auto !important;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .footer-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    min-width: 180px;
+    gap: 2px;
   }
 
   .gradient-header {
@@ -273,10 +304,30 @@
   gap: 12px;
 }
 
+.github-icon {
+  width: 20px !important;
+  height: 20px !important;
+  object-fit: contain;
+  margin-left: 8px;
+}
+
+.footer-github-link {
+  color: #666;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: color 0.2s;
+  margin-top: 2px;
+}
+.footer-github-link:hover {
+  color: $primary;
+  text-decoration: underline;
+}
+
 .social-icon {
-  width: 32px;   /* tamanho pequeno */
-  height: 32px;
-  cursor: pointer;
+  width: 32px !important;
+  height: 32px !important;
+  object-fit: contain;
+  display: inline-block;
 }
 
 .footer-right {
@@ -287,9 +338,11 @@
 
 
 .footer-logo {
-  width: 80px;   /* tamanho da imagem maior */
-  height: auto;
+  width: 48px !important;
+  height: auto !important;
   object-fit: contain;
+  display: block;
+  margin: 0 auto;
 }
 
 .footer-text {
@@ -307,4 +360,148 @@
 .footer-text-line2 {
   font-size: 0.85rem;
   color: #666;
+}
+
+.rounded-borders {
+  max-width: 220px;
+  max-height: 180px;
+  border-radius: 12px;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto;
+}
+
+q-footer,
+.q-footer {
+  box-shadow: 0 -4px 16px -4px rgba(0,0,0,0.18);
+}
+
+// ========================
+// 🏠 HOME PAGE ESTILOS ADICIONAIS
+// ========================
+.home-page-row {
+  margin-top: 40px;
+  width: 100%;
+}
+
+.home-main-card {
+  min-width: 340px;
+  max-width: 500px;
+  margin-left: 32px;
+  box-shadow: 0 4px 24px -4px rgba(0,0,0,0.12); // sombra suave
+  border-radius: 18px;
+  background: #fff;
+  transition: box-shadow 0.2s;
+  padding-bottom: 32px; // padding inferior do conteúdo do card
+  margin-bottom: 48px;  // aumenta a distância entre o card e o footer
+
+  &:hover {
+    box-shadow: 0 8px 32px -4px rgba(0,0,0,0.18);
+  }
+}
+
+.home-main-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.mascote-img {
+  width: 100%;
+  max-width: 180px;
+  min-width: 80px;
+  margin-top: 24px;
+  margin-left: 50%;
+  border-radius: 16px;
+  background: transparent;
+  display: block;
+  filter: drop-shadow(0 8px 24px $accent);
+  transition: max-width 0.2s, margin-left 0.2s;
+}
+
+.info-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  width: 70%; // ajuste conforme desejar
+  max-width: 180px;
+}
+
+.mascote-row {
+  display: flex;
+  align-items: center;
+  margin-top: 24px;
+  margin-left: 15%;
+}
+
+.mascote-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 16px;
+}
+
+.mascote-nome {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: $accent;
+  letter-spacing: 1px;
+  text-shadow: 1px 2px 8px rgba(0,0,0,0.10);
+}
+
+.mascote-criador {
+  font-size: 0.95rem;
+  color: #888;
+  font-style: italic;
+  margin-top: 2px;
+  margin-left: 2px;
+}
+
+@media (max-width: 1024px) {
+  .home-page-row {
+    flex-direction: column !important;
+    align-items: stretch;
+  }
+  .home-main-col {
+    align-items: center;
+  }
+  .mascote-row, .mascote-img {
+    margin-left: 0;
+    max-width: 140px;
+  }
+  .home-info-right {
+    min-width: 0;
+    width: 100%;
+    margin-top: 32px;
+    align-items: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .home-main-card {
+    min-width: 0;
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    border-radius: 10px;
+    padding-bottom: 16px;
+  }
+  .mascote-img {
+    max-width: 90px;
+    margin-top: 16px;
+  }
+  .mascote-row {
+    margin-top: 12px;
+    margin-left: 0;
+  }
+  .mascote-info {
+    margin-left: 8px;
+  }
+  .home-info-right {
+    margin-top: 24px;
+    gap: 8px;
+  }
 }

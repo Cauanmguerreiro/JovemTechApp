@@ -6,7 +6,7 @@
       </div>
 
       <div class="text-h2" style="opacity:.4">
-        Oops. Nothing here...
+        Oops. Nada encontrado...
       </div>
 
       <q-btn
@@ -15,17 +15,14 @@
         text-color="blue"
         unelevated
         to="/"
-        label="Go Home"
+        label="Voltar para o início"
         no-caps
+        aria-label="Voltar para o início"
       />
     </div>
   </div>
 </template>
 
-<script>
-import { defineComponent } from 'vue';
-
-export default defineComponent({
-  name: 'ErrorNotFound'
-});
+<script setup>
+// Página de erro 404 sem lógica adicional
 </script>

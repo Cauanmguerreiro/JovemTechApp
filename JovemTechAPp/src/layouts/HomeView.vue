@@ -3,15 +3,21 @@
 
     <q-header elevated class="gradient-header text-white">
       <q-toolbar class="q-py-sm">
+        <!-- Esquerda: botão de menu -->
         <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" />
 
-        <q-toolbar-title class="flex flex-center">
+        <!-- Centro: logo -->
+        <q-toolbar-title class="q-mx-auto" style="text-align: center;">
           <q-img
             class="header-logo"
             src="~assets/images/LogoHeader.png"
             fit="contain"
+            style="margin: 0 auto;"
           />
         </q-toolbar-title>
+
+        <!-- Direita: espaço vazio para balancear -->
+        <div style="width:40px"></div>
       </q-toolbar>
     </q-header>
 
@@ -57,32 +63,45 @@
       <router-view />
     </q-page-container>
 
-    <q-footer class="bg-white q-px-lg q-py-md">
-      <q-toolbar class="footer-toolbar flex justify-between items-center">
-
-    <!-- Esquerda: ícones pequenos (ex: redes sociais) -->
+    <q-footer class="bg-white q-px-lg q-py-xs">
+      <q-toolbar class="footer-toolbar">
+        <!-- Esquerda: ícones -->
         <div class="footer-left flex gap-sm">
-          <img src="#" alt="Rede Social 1" class="social-icon" />
-          <img src="#" alt="Rede Social 2" class="social-icon" />
-        </div>
-
-        <!-- Direita: imagem + texto -->
-        <div class="footer-center flex items-center gap-md">
-          <img
-            class="footer-logo"
-            src="~assets/images/footer.png"
-            alt="unirriter|animahub"
+          <a
+            href="https://www.instagram.com/jovemtech_fapa/"
+            target="_blank"
+            rel="noopener"
           >
-          <div class="footer-right flex items-center gap-md">
-            <span class="footer-text-line1">Linha de texto 1</span>
-            <span class="footer-text-line2">Linha de texto 2</span>
-          </div>
-          />
+            <img src="~assets/images/instagram.png" alt="Instagram" class="social-icon" />
+          </a>
         </div>
 
+        <!-- Centro: logo -->
+        <div class="footer-center flex items-center justify-center">
+          <img class="footer-logo" src="~assets/images/footer.png" alt="unirriter|animahub">
+        </div>
+
+        <!-- Direita: textos e github -->
+        <div class="footer-right flex flex-column items-end">
+          <div class="footer-title-row flex items-center gap-sm">
+            <span class="footer-text-line1">DESENVOLVEDORES</span>
+            <img src="~assets/images/gith.svg" alt="GitHub" class="github-icon" />
+          </div>
+          <a
+            href="https://github.com/dev1"
+            class="footer-github-link"
+            target="_blank"
+            rel="noopener"
+          >CauanGuerreiro</a>
+          <a
+            href="https://github.com/dev2"
+            class="footer-github-link"
+            target="_blank"
+            rel="noopener"
+          >GustavoCamargo</a>
+        </div>
       </q-toolbar>
     </q-footer>
-
 
   </q-layout>
 </template>

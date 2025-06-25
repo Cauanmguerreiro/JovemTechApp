@@ -19,20 +19,59 @@
 
     <q-footer class="bg-white q-px-lg q-py-xs">
       <q-toolbar class="footer-toolbar">
-        <q-toolbar-title class="q-mx-auto">
+        <!-- Esquerda: ícones -->
+        <div class="footer-left flex gap-sm">
+          <a
+            href="https://www.instagram.com/jovemtech_fapa/"
+            target="_blank"
+            rel="noopener"
+          >
+            <img
+              src="~assets/images/instagram.png"
+              alt="Instagram"
+              class="social-icon"
+            />
+          </a>
+        </div>
+
+        <!-- Centro: logo -->
+        <div class="footer-center flex items-center justify-center">
           <img
             class="footer-logo"
             src="~assets/images/footer.png"
             alt="unirriter|animahub"
-            style="display: block; margin: 0 auto; width: 48px; height: auto; object-fit: contain;"
+          />
+        </div>
+
+        <!-- Direita: textos e github -->
+        <div class="footer-right flex flex-column items-end">
+          <div class="footer-title-row flex items-center gap-sm">
+            <span class="footer-text-line1">DESENVOLVEDORES</span>
+            <img
+              src="~assets/images/gith.svg"
+              alt="GitHub"
+              class="github-icon"
+            />
+          </div>
+          <a
+            href="https://github.com/dev1"
+            class="footer-github-link"
+            target="_blank"
+            rel="noopener"
           >
-        </q-toolbar-title>
+            CauanGuerreiro
+          </a>
+          <a
+            href="https://github.com/dev2"
+            class="footer-github-link"
+            target="_blank"
+            rel="noopener"
+          >
+            GustavoCamargo
+          </a>
+        </div>
       </q-toolbar>
     </q-footer>
   </q-layout>
 </template>
-
-<script setup>
-import '../css/app.scss'
-</script>
 

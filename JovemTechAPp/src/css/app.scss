@@ -260,7 +260,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    min-height: 44px;
+    min-height: 70px; // deixa o footer mais baixo (ajuste conforme desejar)
     padding: 0;
   }
 
@@ -275,6 +275,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
   }
 
   .footer-logo {
@@ -282,7 +283,8 @@
     height: auto !important;
     object-fit: contain;
     display: block;
-    margin: 0 auto;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .footer-right {
@@ -338,7 +340,7 @@
 
 
 .footer-logo {
-  width: 48px !important;
+  width: 15% !important;      // agora a imagem central do footer tem 15% da largura do footer
   height: auto !important;
   object-fit: contain;
   display: block;

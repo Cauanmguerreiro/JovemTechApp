@@ -1,5 +1,7 @@
-import { auth, db } from '../firebase.js'; 
+import { auth, db } from '../firebase.js';
+import jwt from 'jsonwebtoken' 
 
+const chaveSecreta = 'kpwfnufdi'
 const authenticator = {
 
   register: async (nome, data_nascimento, email, senha, onSuccess, onError) => {
@@ -7,13 +9,14 @@ const authenticator = {
       
       const user = await auth.createUser({
         email,
-        password: senha,
+        senha: senha,
         displayName: nome,
       });
       await db.collection('usuarios').doc(user.uid).set({
         nome,
         data_nascimento,
         email,
+        senha,
         criado_em: new Date()
       });
 
@@ -24,11 +27,18 @@ const authenticator = {
       console.error('Erro ao registrar:', error.code, error.message);
       onError(error.code, error.message);
     }
-
-
   },
+  login: async(email, senha) => {
+    const userSnap = await db.collection('usuarios').where('email', '==', email).limit(1).get();
+    const userData = userSnap.docs[0].data();
 
-
-};
-
+    const token = jwt.sign({ uid: userSnap.docs[0].id, email: userData.email }, chaveSecreta, {
+      expiresIn: '1h'
+     })
+      if (senha !== userData.senha) {
+      throw new Error('Senha incorreta');
+    }
+    return { token }
+  }
+}
 export default authenticator;

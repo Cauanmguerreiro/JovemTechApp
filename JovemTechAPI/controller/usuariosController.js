@@ -1,10 +1,10 @@
 import authenticator from "../services/authenticator.js"
 
-export function criarUsuario(req, res){
-    const {nome, data_nascimento, email, senha} = req.body
+export function criarUsuario(req, res) {
+    const { nome, data_nascimento, email, senha } = req.body
 
     authenticator.register(
-        nome, 
+        nome,
         data_nascimento,
         email,
         senha,
@@ -17,18 +17,23 @@ export function criarUsuario(req, res){
     )
 }
 
-// export async function logarUsuario(req, res){
-//         const { email, senha } = req.body;
+export async function logarUsuario(req, res) {
+    const { email, senha } = req.body;
 
-//     if (!email || !senha) {
-//         return res.status(400).json({ error: 'Email e senha são obrigatórios' });
-//     }
+    if (!email || !senha) {
+        return res.status(400).json({ error: 'Email e senha são obrigatórios' });
+    }
 
-//     try {
-//         const user = await authenticator.loginEmailSenha(email, senha);
-        
-//     } catch (error) {
-//         console.error('Erro no login:', error);
-//         res.status(401).json({ error: 'Email ou senha inválidos' });
-//     }
-// }
+    try {
+        const token = await authenticator.login(email, senha);
+
+
+        return res.status(200).send({
+            message: 'Usuário logado com sucesso!',
+            token
+        });
+    } catch (error) {
+        console.error('Erro no login:', error);
+        res.status(401).json({ error: 'Email ou senha inválidos' });
+    }
+}

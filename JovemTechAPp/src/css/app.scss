@@ -249,8 +249,7 @@
 // ========================
 .login-page-layout {
   .header-logo {
-    height: 40px;
-    max-width: 180px;
+    max-width: 5%;
     object-fit: contain;
     display: block;
     margin: 0 auto;
@@ -259,9 +258,13 @@
   .footer-toolbar {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    min-height: 70px; // deixa o footer mais baixo (ajuste conforme desejar)
-    padding: 0;
+
+  }
+  .header-logo .footer-toolbar {
+    max-width: 5%;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto; // garante que o footer tenha altura consistente
   }
 
   .footer-left {
@@ -273,7 +276,7 @@
   .footer-center {
     flex: 1 1 0%;
     display: flex;
-    justify-content: center;
+
     align-items: center;
     text-align: center;
   }
@@ -303,14 +306,12 @@
 .footer-left {
   /* deixa os ícones alinhados em linha com espaço */
   display: flex;
-  gap: 12px;
+
 }
 
 .github-icon {
   width: 20px !important;
-  height: 20px !important;
-  object-fit: contain;
-  margin-left: 8px;
+  
 }
 
 .footer-github-link {
@@ -332,11 +333,7 @@
   display: inline-block;
 }
 
-.footer-right {
-  display: flex;
-  align-items: center;    /* já está centralizando verticalmente */
-  gap: 16px;
-}
+
 
 
 .footer-logo {
@@ -505,5 +502,51 @@ q-footer,
   .home-info-right {
     margin-top: 24px;
     gap: 8px;
+  }
+}
+
+// ========================
+// 👥 EQUIPE PAGE LAYOUT
+// ========================
+.equipe-page {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.equipe-title {
+  color: accent;
+  font-weight: 700;
+}
+.my-card {
+  margin-bottom: 16px;
+  width: 260px;
+  min-width: 200px;
+  max-width: 320px;
+  display: inline-block;
+  vertical-align: top;
+}
+.row.q-col-gutter-md {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: flex-start;
+}
+.my-card img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 8px 8px 0 0;
+}
+.q-card-section {
+  padding: 10px 12px;
+}
+@media (max-width: 700px) {
+  .my-card {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 16px;
+  }
+  .row.q-col-gutter-md {
+    flex-direction: column;
+    gap: 12px;
   }
 }

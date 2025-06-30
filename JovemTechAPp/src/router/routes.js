@@ -14,6 +14,13 @@ const routes = [
     ]
   },
   {
+    path: '/equipe',
+    component: () => import('layouts/HomeView.vue'),
+    children: [
+      { path: '', component: () => import('pages/EquipePage.vue') }
+    ]
+  },
+  {
     path: '/:catchAll(.*)*',
     component: () => import('pages/ErrorNotFound.vue')
   }

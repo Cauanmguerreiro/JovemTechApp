@@ -1,7 +1,9 @@
 <template>
   <q-page class="q-pa-lg flex flex-center login-page">
     <div class="row items-center justify-around login-container">
+      
       <section class="col-12 col-md-5 q-pa-md login-form">
+        <div class="login-title text-h5 text-center q-mb-md" style="padding-bottom: 20px; font-weight: 800; color: #8c52ff;">LOGIN</div>
         <form @submit.prevent.stop="onSubmit" @reset.prevent.stop="onReset" class="q-gutter-md">
           <q-input
             color="accent"

@@ -1,22 +1,26 @@
 import { auth, db } from '../firebase.js';
-import jwt from 'jsonwebtoken' 
+import jwt from 'jsonwebtoken'
+import bcrypt from "bcrypt";
+import dotenv from 'dotenv';
+dotenv.config();
 
-const chaveSecreta = 'kpwfnufdi'
+const chaveSecreta = process.env.JWT_SECRET
 const authenticator = {
 
   register: async (nome, data_nascimento, email, senha, onSuccess, onError) => {
     try {
-      
+
       const user = await auth.createUser({
         email,
-        senha: senha,
+        password: senha,
         displayName: nome,
       });
+      const senhaHash = await bcrypt.hash(senha, 10);
       await db.collection('usuarios').doc(user.uid).set({
         nome,
         data_nascimento,
         email,
-        senha,
+        senhaHash,
         criado_em: new Date()
       });
 
@@ -28,14 +32,15 @@ const authenticator = {
       onError(error.code, error.message);
     }
   },
-  login: async(email, senha) => {
+  login: async (email, senha) => {
     const userSnap = await db.collection('usuarios').where('email', '==', email).limit(1).get();
     const userData = userSnap.docs[0].data();
 
     const token = jwt.sign({ uid: userSnap.docs[0].id, email: userData.email }, chaveSecreta, {
       expiresIn: '1h'
-     })
-      if (senha !== userData.senha) {
+    })
+    const compare = bcrypt.compare(senha, userData.senhaHash)
+    if (!compare) {
       throw new Error('Senha incorreta');
     }
     return { token }

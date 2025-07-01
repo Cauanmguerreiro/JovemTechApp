@@ -21,15 +21,31 @@
     <div class="equipe-section">
       <div class="equipe-title text-h5 q-mb-md">Professores</div>
       <div class="row q-col-gutter-md">
-        <div class="col-12 col-sm-6 col-md-4" v-for="prof in professores" :key="prof.nome">
+        <div class="col-12 col-sm-6 col-md-4">
           <q-card class="my-card">
-            <img :src="prof.foto" :alt="prof.nome" />
+            <img src="/src/assets/images/equipeimg/cauan.png" alt="Cauan Guerreiro" />
             <q-card-section>
-              <div class="text-h6">{{ prof.nome }}</div>
-              <div class="text-subtitle2">{{ prof.cargo }}</div>
+              <div class="text-h6">Cauan Guerreiro</div>
+              <div class="text-subtitle2">Professor</div>
             </q-card-section>
             <q-card-section class="q-pt-none">
-              <div>{{ prof.descricao }}</div>
+              <div>Estudante de Ciência da Computação | Desenvolvimento de Software | Cibersegurança | Programação | Python | HTML5 | CSS | JavaScript
+                <br><br>
+                Sou estudante de Ciência da Computação com foco em Desenvolvimento Web, e estou constantemente aprimorando minhas habilidades práticas.
+              </div>
+            </q-card-section>
+          </q-card>
+        </div>
+        <div class="col-12 col-sm-6 col-md-4">
+          <q-card class="my-card">
+            <img src="/src/assets/images/equipeimg/nicolas.png" alt="Cauan Guerreiro" />
+            <q-card-section>
+              <div class="text-h6">Nicolas Dimer</div>
+              <div class="text-subtitle2">Professor</div>
+            </q-card-section>
+            <q-card-section class="q-pt-none">
+              <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae nam ipsa hic similique debitis, distinctio alias, eaque sed fuga recusandae facere magni veritatis impedit facilis ratione. Quod nam recusandae sapiente?
+              </div>
             </q-card-section>
           </q-card>
         </div>
@@ -39,15 +55,15 @@
     <div class="equipe-section">
       <div class="equipe-title text-h5 q-mb-md">Monitores</div>
       <div class="row q-col-gutter-md">
-        <div class="col-12 col-sm-6 col-md-4" v-for="mon in monitores" :key="mon.nome">
+        <div class="col-12 col-sm-6 col-md-4">
           <q-card class="my-card">
-            <img :src="mon.foto" :alt="mon.nome" />
+            <img src="https://cdn.quasar.dev/img/avatar3.jpg" alt="Monitor 1" />
             <q-card-section>
-              <div class="text-h6">{{ mon.nome }}</div>
-              <div class="text-subtitle2">{{ mon.cargo }}</div>
+              <div class="text-h6">Monitor 1</div>
+              <div class="text-subtitle2">Monitor</div>
             </q-card-section>
             <q-card-section class="q-pt-none">
-              <div>{{ mon.descricao }}</div>
+              <div>Descrição do monitor.</div>
             </q-card-section>
           </q-card>
         </div>
@@ -57,15 +73,15 @@
     <div class="equipe-section">
       <div class="equipe-title text-h5 q-mb-md">Mídia</div>
       <div class="row q-col-gutter-md">
-        <div class="col-12 col-sm-6 col-md-4" v-for="mid in midia" :key="mid.nome">
+        <div class="col-12 col-sm-6 col-md-4">
           <q-card class="my-card">
-            <img :src="mid.foto" :alt="mid.nome" />
+            <img src="https://cdn.quasar.dev/img/avatar4.jpg" alt="Mídia 1" />
             <q-card-section>
-              <div class="text-h6">{{ mid.nome }}</div>
-              <div class="text-subtitle2">{{ mid.cargo }}</div>
+              <div class="text-h6">Mídia 1</div>
+              <div class="text-subtitle2">Mídia</div>
             </q-card-section>
             <q-card-section class="q-pt-none">
-              <div>{{ mid.descricao }}</div>
+              <div>Descrição da pessoa da mídia.</div>
             </q-card-section>
           </q-card>
         </div>
@@ -75,32 +91,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-
-const professores = ref([
-  {
-    nome: 'Professora 1',
-    cargo: 'Professora',
-    foto: 'https://cdn.quasar.dev/img/avatar2.jpg',
-    descricao: 'Descrição da professora.'
-  }
-])
-const monitores = ref([
-  {
-    nome: 'Monitor 1',
-    cargo: 'Monitor',
-    foto: 'https://cdn.quasar.dev/img/avatar3.jpg',
-    descricao: 'Descrição do monitor.'
-  }
-])
-const midia = ref([
-  {
-    nome: 'Mídia 1',
-    cargo: 'Mídia',
-    foto: 'https://cdn.quasar.dev/img/avatar4.jpg',
-    descricao: 'Descrição da pessoa da mídia.'
-  }
-])
+// ...existing code removed, pois não há mais arrays dinâmicos...
 </script>
 
 <style scoped>

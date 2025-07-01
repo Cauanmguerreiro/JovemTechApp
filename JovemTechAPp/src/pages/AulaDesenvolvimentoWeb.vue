@@ -117,7 +117,7 @@ function executarJS() {
     console.log = (...args) => {
       output += args.map(a => typeof a === 'object' ? JSON.stringify(a) : String(a)).join(' ') + '\n'
     }
-    // eslint-disable-next-line no-new-func
+
     new Function(codigoJS.value)()
     saidaJS.value = output.trim() || 'Sem saída.'
   } catch (e) {

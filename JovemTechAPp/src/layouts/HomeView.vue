@@ -28,29 +28,29 @@
   style="min-width: 220px;"
 >
   <div class="top-buttons">
-    <q-btn flat class="drawer-btn">
+    <q-btn flat class="drawer-btn" @click="$router.push('/modulos')">
       <span class="btn-text">MODULOS</span>
       <q-icon name="book" />
     </q-btn>
 
-    <q-btn flat class="drawer-btn">
+    <q-btn flat class="drawer-btn" @click="$router.push('/equipe')">
       <span class="btn-text">EQUIPE</span>
       <q-icon name="group" />
     </q-btn>
 
-    <q-btn flat class="drawer-btn">
+    <q-btn flat class="drawer-btn" @click="$router.push('/fotos')">
       <span class="btn-text">FOTOS</span>
       <q-icon name="camera_alt" />
     </q-btn>
   </div>
 
   <div class="bottom-buttons">
-    <q-btn flat class="drawer-btn">
+    <q-btn flat class="drawer-btn" @click="$router.push('/sobre')">
       <span class="btn-text">SOBRE NÓS</span>
       <q-img src="#" />
     </q-btn>
 
-    <q-btn flat class="drawer-btn">
+    <q-btn flat class="drawer-btn" @click="$router.push('/perfil')">
       <span class="btn-text">PERFIL</span>
       <q-icon name="account_circle" />
     </q-btn>

@@ -1,23 +1,20 @@
 const routes = [
   {
-    path: '/',
+    path: '',
     component: () => import('layouts/LoginPageLayout.vue'),
     children: [
       { path: '', component: () => import('pages/IndexPage.vue') }
     ]
   },
   {
-    path: '/home',
     component: () => import('layouts/HomeView.vue'),
     children: [
-      { path: '', component: () => import('pages/HomePage.vue') }
-    ]
-  },
-  {
-    path: '/equipe',
-    component: () => import('layouts/HomeView.vue'),
-    children: [
-      { path: '', component: () => import('pages/EquipePage.vue') }
+      { path: '/modulos', component: () => import('pages/ModulosPage.vue') },
+      { path: '/equipe', component: () => import('pages/EquipePage.vue') },
+      { path: '/fotos', component: () => import('pages/FotosPage.vue') },
+      { path: '/sobre', component: () => import('pages/SobrePage.vue') },
+      { path: '/perfil', component: () => import('pages/PerfilPage.vue') },
+      { path: '/aula-desenvolvimento-web', component: () => import('pages/AulaDesenvolvimentoWeb.vue') }
     ]
   },
   {
@@ -27,3 +24,4 @@ const routes = [
 ]
 
 export default routes
+

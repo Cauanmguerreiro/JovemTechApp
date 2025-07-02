@@ -1,5 +1,5 @@
 import authenticator from "../services/authenticator.js"
-import bcrypt from "bcrypt";
+
 
 
 export async function criarUsuario(req, res) {

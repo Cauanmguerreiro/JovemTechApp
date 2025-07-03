@@ -88,13 +88,13 @@
             <img src="~assets/images/gith.svg" alt="GitHub" class="github-icon" />
           </div>
           <a
-            href="https://github.com/dev1"
+            href="https://github.com/Cauanmguerreiro"
             class="footer-github-link"
             target="_blank"
             rel="noopener"
           >CauanGuerreiro</a>
           <a
-            href="https://github.com/dev2"
+            href="https://github.com/camargobro"
             class="footer-github-link"
             target="_blank"
             rel="noopener"

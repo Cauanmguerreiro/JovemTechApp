@@ -25,6 +25,15 @@ export default defineRouter(function (/* { store, ssrContext } */) {
     // quasar.conf.js -> build -> publicPath
     history: createHistory(process.env.VUE_ROUTER_BASE)
   })
+Router.beforeEach((to, from, next) => {
+  const token = localStorage.getItem('token');
 
+  if (to.meta.requiresAuth && !token) {
+    next(''); 
+  } else {
+    next();
+  }
+});
   return Router
 })
+

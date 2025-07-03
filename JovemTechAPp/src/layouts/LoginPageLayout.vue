@@ -8,6 +8,7 @@
             src="~assets/images/LogoHeader.png"
             fit="contain"
             style="margin: 0 auto;"
+        
           />
         </q-toolbar-title>
       </q-toolbar>
@@ -54,7 +55,7 @@
             />
           </div>
           <a
-            href="https://github.com/dev1"
+            href="https://github.com/Cauanmguerreiro"
             class="footer-github-link"
             target="_blank"
             rel="noopener"
@@ -62,7 +63,7 @@
             CauanGuerreiro
           </a>
           <a
-            href="https://github.com/dev2"
+            href="https://github.com/camargobro"
             class="footer-github-link"
             target="_blank"
             rel="noopener"

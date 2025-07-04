@@ -47,40 +47,32 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
 
-const atividadesTI = ref([
-  {
-    titulo: 'Introdução à Informática',
-    descricao: 'Conceitos básicos de hardware, software, sistemas operacionais e redes.'
-  },
-  {
-    titulo: 'Internet e Segurança',
-    descricao: 'Noções de navegação, e-mail, boas práticas e segurança digital.'
-  },
-  {
-    titulo: 'Ferramentas de Escritório',
-    descricao: 'Uso de editores de texto, planilhas e apresentações.'
-  }
-])
+const atividadesTI = ref([])
+const atividadesProg = ref([])
+const carregando = ref(true)
+const erro = ref('')
 
-const atividadesProg = ref([
-  {
-    titulo: 'Lógica de Programação',
-    descricao: 'Raciocínio lógico, fluxogramas e algoritmos.'
-  },
-  {
-    titulo: 'Desenvolvimento Web',
-    descricao: 'HTML, CSS, JavaScript e criação de páginas web.'
-  },
-  {
-    titulo: 'Projetos Práticos',
-    descricao: 'Desenvolvimento de projetos em grupo e desafios de programação.'
+async function carregarAtividades() {
+  carregando.value = true
+  erro.value = ''
+  try {
+    const resp = await fetch('http://localhost:3000/api/atividades')
+    if (!resp.ok) throw new Error('Erro ao buscar atividades')
+    const atividades = await resp.json()
+    atividadesTI.value = atividades.filter(a => a.tipo === 'T.I.')
+    atividadesProg.value = atividades.filter(a => a.tipo === 'Programação')
+  } catch (e) {
+    erro.value = e.message || 'Erro desconhecido'
   }
-])
+  carregando.value = false
+}
+
+onMounted(carregarAtividades)
 
 function acessarAtividade(atividade, idx) {
   if (atividade.titulo === 'Desenvolvimento Web' || idx === 1) {

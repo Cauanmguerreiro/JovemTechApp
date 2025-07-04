@@ -35,6 +35,7 @@ export async function logarUsuario(req, res) {
 
     try {
         const token = await authenticator.login(email, senha);
+        console.log('logado')
         return res.status(200).send({
             mensagem: 'Usuário logado com sucesso!',
             token

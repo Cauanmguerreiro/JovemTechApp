@@ -39,7 +39,7 @@ const authenticator = {
     const token = jwt.sign({ uid: userSnap.docs[0].id, email: userData.email }, chaveSecreta, {
       expiresIn: '1h'
     })
-    const compare = bcrypt.compare(senha, userData.senhaHash)
+    const compare = await bcrypt.compare(senha, userData.senhaHash)
     if (!compare) {
       throw new Error('Senha incorreta');
     }

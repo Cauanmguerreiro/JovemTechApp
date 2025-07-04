@@ -3,25 +3,31 @@ import authenticator from "../services/authenticator.js"
 
 
 export async function criarUsuario(req, res) {
-    const { nome, data_nascimento, email, senha } = req.body;
+    const { nome, data_nascimento, email, senha, instituicao } = req.body;
+    if (!nome || !data_nascimento || !email || !senha || !instituicao) {
+        return res.status(400).json({ error: 'Todos os campos devem ser preenchidos' })
+    }
 
     try {
-   
 
-        authenticator.register(
+
+        await authenticator.register(
             nome,
             data_nascimento,
             email,
-            senha, 
-            (user) => {
-                res.status(201).send('Usuário criado com sucesso!');
-            },
-            (errorCode, errorMessage) => {
-                res.status(400).json({ error: errorMessage, code: errorCode });
-            }
+            senha,
+            instituicao,
+
+
+
         );
-    } catch (err) {
-        res.status(500).json({ error: 'Erro ao criptografar a senha' });
+        
+            res.status(201).send('Usuário criado com sucesso!')
+    } catch (error) {
+        if (error.code === 'auth/email-already-exists') {
+            return res.status(409).json({ error: 'E‑mail já cadastrado' });
+        }
+        return res.status(500).json({ error: 'Erro interno ao criar usuário' });
     }
 }
 

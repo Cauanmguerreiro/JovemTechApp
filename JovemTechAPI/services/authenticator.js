@@ -7,7 +7,7 @@ dotenv.config();
 const chaveSecreta = process.env.JWT_SECRET
 const authenticator = {
 
-  register: async (nome, data_nascimento, email, senha, onSuccess) => {
+  register: async (nome, data_nascimento, email, senha, instituicao, cargo) => {
     try {
 
       const user = await auth.createUser({
@@ -21,12 +21,11 @@ const authenticator = {
         data_nascimento,
         email,
         senhaHash,
+        instituicao,
+        cargo,
         criado_em: new Date()
       });
 
-
-      console.log('Usuário criado com sucesso!');
-      onSuccess(user);
     } catch (error) {
       console.error('Erro ao registrar:', error.code, error.message);
      throw error

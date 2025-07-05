@@ -3,9 +3,15 @@ import authenticator from "../services/authenticator.js"
 
 
 export async function criarUsuario(req, res) {
-    const { nome, data_nascimento, email, senha, instituicao } = req.body;
-    if (!nome || !data_nascimento || !email || !senha || !instituicao) {
-        return res.status(400).json({ error: 'Todos os campos devem ser preenchidos' })
+    const { nome, data_nascimento, email, senha, instituicao, cargo } = req.body;
+
+    const camposPermitidos = ['nome', 'data_nascimento', 'email', 'senha', 'instituicao', 'cargo'];
+    const camposRecebidos = Object.keys(req.body);
+
+    const camposInvalidos = camposRecebidos.filter(campo => !camposPermitidos.includes(campo));
+
+    if (camposInvalidos.length > 0) {
+        return res.status(400).json({ error: 'Algum campo inválido foi inserido', camposInvalidos });
     }
 
     try {
@@ -17,12 +23,10 @@ export async function criarUsuario(req, res) {
             email,
             senha,
             instituicao,
-
-
-
+            cargo
         );
-        
-            res.status(201).send('Usuário criado com sucesso!')
+
+        res.status(201).send('Usuário criado com sucesso!')
     } catch (error) {
         if (error.code === 'auth/email-already-exists') {
             return res.status(409).json({ error: 'E‑mail já cadastrado' });

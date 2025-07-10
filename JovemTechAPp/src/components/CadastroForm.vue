@@ -72,15 +72,19 @@
           />
         </template>
       </q-input>
-      <q-input 
-        color="accent" 
-        filled 
-        v-model="formData.instituicao" 
-        label="Instituição" 
-        lazy-rules
-        :rules="instituicaoRules"
-        autocomplete="organization"
-      />
+  <q-select 
+  color="accent"
+  filled
+  v-model="formData.instituicao"
+  label="Instituição"
+  lazy-rules
+  :rules="instituicaoRules"
+  :options="instituicoes"
+  option-label="label"
+  option-value="value"
+  emit-value
+  map-options
+/>
       <q-toggle 
         v-model="accept" 
         label="Eu aceito os termos e condições" 
@@ -130,7 +134,8 @@ export default defineComponent({
       data_nascimento: '',
       email: '',
       senha: '',
-      instituicao: ''
+      instituicao: '',
+      cargo: 'aluno'
     });
 
     const confirmarSenha = ref('');
@@ -144,16 +149,6 @@ export default defineComponent({
       val => val && val.length >= 3 || 'Nome deve ter pelo menos 3 caracteres'
     ];
 
-    const dataRules = [
-      val => val && val.length > 0 || 'Data de nascimento é obrigatória',
-      val => {
-        if (!val) return 'Data de nascimento é obrigatória';
-        const data = new Date(val);
-        const hoje = new Date();
-        const idade = hoje.getFullYear() - data.getFullYear();
-        return idade >= 12 || 'Você deve ter pelo menos 12 anos';
-      }
-    ];
 
     const emailRules = [
       val => val && val.length > 0 || 'Email é obrigatório',
@@ -162,6 +157,19 @@ export default defineComponent({
         return emailRegex.test(val) || 'Email inválido';
       }
     ];
+
+   const dataRules = [
+  val => !!val || 'Data de nascimento é obrigatória',
+  val => {
+    const data = new Date(val)
+    const agora = new Date()
+
+    if (data > agora) {
+      return 'Data inválida'
+    }
+    return true
+  }
+]
 
     const senhaRules = [
       val => val && val.length > 0 || 'Senha é obrigatória',
@@ -176,6 +184,12 @@ export default defineComponent({
     const instituicaoRules = [
       val => val && val.length > 0 || 'Instituição é obrigatória'
     ];
+
+    const instituicoes = [
+  { label: 'Uniritter', value: 'uniritter' },
+  { label: 'JT', value: 'jt' },
+  { label: 'Clube de mães', value: 'clube_de_maes' },
+]
 
     const $q = useQuasar();
 
@@ -223,11 +237,12 @@ export default defineComponent({
       isPwd,
       isConfirmPwd,
       nomeRules,
-      dataRules,
       emailRules,
       senhaRules,
       confirmarSenhaRules,
       instituicaoRules,
+      dataRules,
+      instituicoes,
       onSubmit,
       onReset
     };

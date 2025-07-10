@@ -163,7 +163,7 @@ export default defineComponent({
       cadastroLoading.value = true;
 
       try {
-        const response = await fetch('http://localhost:3000/usuarios/criar', {
+        const response = await fetch('http://localhost:3000/usuarios/registrar', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

@@ -1,10 +1,11 @@
 <template>
-  <q-layout view="lHh LpR fF" class="login-page-layout">
+  <q-layout view="lHh LpR lFf" class="login-page-layout">
 
     <q-header elevated class="gradient-header text-white">
       <q-toolbar class="q-py-sm">
         <!-- Esquerda: botão de menu -->
         <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" />
+
 
         <!-- Centro: logo -->
         <q-toolbar-title class="q-mx-auto" style="text-align: center;">
@@ -16,16 +17,17 @@
           />
         </q-toolbar-title>
 
-        <!-- Direita: espaço vazio para balancear -->
-        <div style="width:40px"></div>
+        <!-- Direita: botão de logout -->
+        <q-btn flat icon="logout" label="Sair" @click="fazerLogout" />
       </q-toolbar>
+      
     </q-header>
 
     <q-drawer
+  :width="180"
   class="menu-drawer"
   v-model="leftDrawerOpen"
   side="left"
-  style="min-width: 220px;"
 >
   <div class="top-buttons">
     <q-btn flat class="drawer-btn" @click="$router.push('/modulos')">
@@ -63,7 +65,7 @@
       <router-view />
     </q-page-container>
 
-    <q-footer class="bg-white q-px-lg q-py-xs">
+    <q-footer reveal reveal-offset="500" bordered class="bg-white q-px-lg q-py-xs">
       <q-toolbar class="footer-toolbar">
         <!-- Esquerda: ícones -->
         <div class="footer-left flex gap-sm">
@@ -107,12 +109,19 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import '../css/app.scss'
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+import '../css/app.scss';
 
-const leftDrawerOpen = ref(false)
+const leftDrawerOpen = ref(false);
+const router = useRouter();
 
 const toggleLeftDrawer = () => {
-  leftDrawerOpen.value = !leftDrawerOpen.value
-}
+  leftDrawerOpen.value = !leftDrawerOpen.value;
+};
+
+const fazerLogout = () => {
+  // Adicione sua lógica de logout aqui, como limpar o token de autenticação.
+  router.push('/'); // Redireciona para a página de login.
+};
 </script>

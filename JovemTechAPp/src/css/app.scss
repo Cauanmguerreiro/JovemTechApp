@@ -97,7 +97,8 @@
 .q-page-container {
   background-color: #f4f6f8;
   padding: 24px;
-  min-height: 100vh;
+  /* Com o footer fixo (lFf), o Quasar já calcula a altura necessária. */
+  /* min-height: 100vh; */
 }
 
 // Botão de menu
@@ -299,8 +300,8 @@
   }
 
   .gradient-header {
-    background: linear-gradient(to bottom, $secondary, $primary);
-    box-shadow: 0 2px 20px $primary;
+    background: linear-gradient(to right, $secondary, $primary);
+
   }
 }
 .footer-left {
@@ -373,6 +374,17 @@
 q-footer,
 .q-footer {
   box-shadow: 0 -4px 16px -4px rgba(0,0,0,0.18);
+}
+
+// ========================
+// ⚙️ AJUSTES DE TRANSIÇÃO
+// ========================
+
+// Transição mais suave para o drawer do menu ao abrir e fechar.
+// O Quasar usa uma transição rápida por padrão (0.12s). Aumentar
+// a duração para 0.3s torna a animação mais perceptível e suave.
+body.q-body--layout-animate .q-drawer {
+  transition-duration: .3s !important;
 }
 
 // ========================

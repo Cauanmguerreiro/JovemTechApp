@@ -121,7 +121,7 @@ const toggleLeftDrawer = () => {
 };
 
 const fazerLogout = () => {
-  // Adicione sua lógica de logout aqui, como limpar o token de autenticação.
-  router.push('/'); // Redireciona para a página de login.
+  localStorage.removeItem('token')
+  router.push('/'); 
 };
 </script>

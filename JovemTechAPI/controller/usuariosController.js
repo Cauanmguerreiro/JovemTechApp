@@ -1,4 +1,6 @@
 import authenticator from "../services/authenticator.js"
+import { logout } from "../services/authenticator.js"
+import { auth } from '../firebase.js';
 
 
 
@@ -54,4 +56,15 @@ export async function logarUsuario(req, res) {
         console.error('Erro no login:', error);
         res.status(401).json({ error: 'Email ou senha inválidos' });
     }
+}
+
+export async function sair(req, res) {
+try{
+    const uid = req.body.uid
+    await logout(uid);
+    res.status(200).send('Usuário deslogado com sucesso');
+}catch(error){
+    console.log(error)
+    res.status(500).send('Ocorreu um erro ao deslogar usuário')
+}
 }

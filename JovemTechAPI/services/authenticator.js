@@ -2,10 +2,12 @@ import { auth, db } from '../firebase.js';
 import jwt from 'jsonwebtoken'
 import bcrypt from "bcrypt";
 import dotenv from 'dotenv';
+import admin from 'firebase-admin'
 dotenv.config();
 
 const chaveSecreta = process.env.JWT_SECRET
 const authenticator = {
+
 
   register: async (nome, data_nascimento, email, senha, instituicao, cargo) => {
     try {
@@ -28,7 +30,7 @@ const authenticator = {
 
     } catch (error) {
       console.error('Erro ao registrar:', error.code, error.message);
-     throw error
+      throw error
     }
   },
   login: async (email, senha) => {
@@ -44,6 +46,14 @@ const authenticator = {
     }
     return { token }
   }
+}
+
+export async function logout(uid) {
+  if (!uid || typeof uid !== 'string' || uid.length > 128) {
+    throw new Error('UID inválido para revogação');
+  }
+  await admin.auth().revokeRefreshTokens(uid);
+  
 }
 export function authenticateToken(req, res, next) {
   const authHeader = req.headers['authorization'];
@@ -61,5 +71,6 @@ export function authenticateToken(req, res, next) {
     next();
   });
 }
+
 
 export default authenticator;

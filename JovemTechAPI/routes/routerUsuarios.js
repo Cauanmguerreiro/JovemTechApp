@@ -1,7 +1,10 @@
 import express from 'express'
 const router = express.Router()
-import { criarUsuario, logarUsuario, sair } from '../controller/usuariosController.js' 
+import { criarUsuario, logarUsuario, verUsuario, sair } from '../controller/usuariosController.js' 
 import { authenticateToken } from '../services/authenticator.js';
+
+
+router.get('/:id', authenticateToken, verUsuario)
 
 router.post('/registrar', criarUsuario)
 

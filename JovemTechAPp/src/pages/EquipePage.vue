@@ -105,7 +105,7 @@
 }
 
 .equipe-title {
-  border-bottom: 2px solid #0078d4;
+  border-bottom: 2px solid #8c52ff;
   display: inline-block;
   padding-bottom: 0.5rem;
 }

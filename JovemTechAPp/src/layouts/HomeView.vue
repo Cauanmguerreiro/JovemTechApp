@@ -9,55 +9,51 @@
 
         <!-- Centro: logo -->
         <q-toolbar-title class="q-mx-auto" style="text-align: center;">
-          <q-img
-            class="header-logo"
-            src="~assets/images/LogoHeader.png"
-            fit="contain"
-            style="margin: 0 auto;"
-          />
+          <q-img class="header-logo" src="~assets/images/LogoHeader.png" fit="contain" style="margin: 0 auto;" />
         </q-toolbar-title>
 
         <!-- Direita: botão de logout -->
         <q-btn flat icon="logout" label="Sair" @click="fazerLogout" />
       </q-toolbar>
-      
+
     </q-header>
 
-    <q-drawer
-  :width="180"
-  class="menu-drawer"
-  v-model="leftDrawerOpen"
-  side="left"
->
-  <div class="top-buttons">
-    <q-btn flat class="drawer-btn" @click="$router.push('/modulos')">
-      <span class="btn-text">MODULOS</span>
-      <q-icon name="book" />
-    </q-btn>
+    <q-drawer :width="200" class="menu-drawer " v-model="leftDrawerOpen" side="left">
+      <div class="text-center">
+        <q-avatar class="q-mb-md">
+          <img src="https://png.pngtree.com/png-clipart/20230817/original/pngtree-round-kid-avatar-boy-face-picture-image_8005285.png">
+        </q-avatar>
+        <p class="text-h7 q-mb-xxs" style="word-wrap: break-word; overflow-wrap: break-word;"><strong>{{ nome }}</strong></p>
+        <p class="text-h7 q-mb-xxs" style="word-wrap: break-word; overflow-wrap: break-word;"><strong>{{ email }}</strong></p>
+      </div>
+      <div class="top-buttons q-gutter-md ">
 
-    <q-btn flat class="drawer-btn" @click="$router.push('/equipe')">
-      <span class="btn-text">EQUIPE</span>
-      <q-icon name="group" />
-    </q-btn>
+        <q-btn flat class="drawer-btn" @click="$router.push('/home')" label="INÍCIO" icon="home">
+        </q-btn>
+        <q-btn flat class="drawer-btn" @click="$router.push('/modulos')" label="MÓDULOS" icon="book">
 
-    <q-btn flat class="drawer-btn" @click="$router.push('/fotos')">
-      <span class="btn-text">FOTOS</span>
-      <q-icon name="camera_alt" />
-    </q-btn>
-  </div>
+        </q-btn>
 
-  <div class="bottom-buttons">
-    <q-btn flat class="drawer-btn" @click="$router.push('/sobre')">
-      <span class="btn-text">SOBRE NÓS</span>
-      <q-img src="#" />
-    </q-btn>
+        <q-btn flat class="drawer-btn" @click="$router.push('/equipe')" label="EQUIPE" icon="group">
 
-    <q-btn flat class="drawer-btn" @click="$router.push('/perfil')">
-      <span class="btn-text">PERFIL</span>
-      <q-icon name="account_circle" />
-    </q-btn>
-  </div>
-</q-drawer>
+
+        </q-btn>
+
+        <q-btn flat class="drawer-btn" @click="$router.push('/fotos')" label="FOTOS" icon="camera_alt">
+
+        </q-btn>
+      </div>
+
+      <div class="bottom-buttons">
+        <q-btn flat class="drawer-btn" @click="$router.push('/sobre')" label="SOBRE NÓS">
+
+        </q-btn>
+
+        <q-btn flat class="drawer-btn" @click="$router.push('/perfil')" label="PERFIL" icon="account_circle">
+
+        </q-btn>
+      </div>
+    </q-drawer>
 
 
 
@@ -69,11 +65,7 @@
       <q-toolbar class="footer-toolbar">
         <!-- Esquerda: ícones -->
         <div class="footer-left flex gap-sm">
-          <a
-            href="https://www.instagram.com/jovemtech_fapa/"
-            target="_blank"
-            rel="noopener"
-          >
+          <a href="https://www.instagram.com/jovemtech_fapa/" target="_blank" rel="noopener">
             <img src="~assets/images/instagram.png" alt="Instagram" class="social-icon" />
           </a>
         </div>
@@ -89,18 +81,10 @@
             <span class="footer-text-line1">DESENVOLVEDORES</span>
             <img src="~assets/images/gith.svg" alt="GitHub" class="github-icon" />
           </div>
-          <a
-            href="https://github.com/Cauanmguerreiro"
-            class="footer-github-link"
-            target="_blank"
-            rel="noopener"
-          >CauanGuerreiro</a>
-          <a
-            href="https://github.com/camargobro"
-            class="footer-github-link"
-            target="_blank"
-            rel="noopener"
-          >GustavoCamargo</a>
+          <a href="https://github.com/Cauanmguerreiro" class="footer-github-link" target="_blank"
+            rel="noopener">CauanGuerreiro</a>
+          <a href="https://github.com/camargobro" class="footer-github-link" target="_blank"
+            rel="noopener">GustavoCamargo</a>
         </div>
       </q-toolbar>
     </q-footer>
@@ -109,19 +93,62 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import { useRouter } from 'vue-router';
-import '../css/app.scss';
+import { ref, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
+import { jwtDecode } from 'jwt-decode'
+import { useQuasar } from 'quasar'
+import '../css/app.scss'
 
-const leftDrawerOpen = ref(false);
-const router = useRouter();
+const nome = ref('')
+const email = ref('')
+const $q = useQuasar()
+const router = useRouter()
+const leftDrawerOpen = ref(false)
 
 const toggleLeftDrawer = () => {
-  leftDrawerOpen.value = !leftDrawerOpen.value;
-};
+  leftDrawerOpen.value = !leftDrawerOpen.value
+}
 
 const fazerLogout = () => {
   localStorage.removeItem('token')
-  router.push('/'); 
-};
+  router.push('/')
+}
+
+// Função para buscar usuário por ID extraído do token
+async function buscarUsuario() {
+  try {
+    const token = localStorage.getItem('token')
+    if (!token) throw new Error('Token não encontrado')
+
+    const decoded = jwtDecode(token)
+    const userId = decoded.id || decoded._id || decoded.uid
+
+    const response = await fetch(`http://localhost:3000/usuarios/${userId}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+    })
+
+    if (!response.ok) throw new Error('Falha ao buscar usuário')
+
+    const data = await response.json()
+
+    nome.value = data.nome
+    email.value = data.email
+
+  } catch (err) {
+    $q.notify({
+      message: 'Erro: ' + err.message,
+      color: 'negative',
+      position: 'top',
+    })
+  }
+}
+
+// Chama buscarUsuario quando o componente for montado
+onMounted(() => {
+  buscarUsuario()
+})
 </script>

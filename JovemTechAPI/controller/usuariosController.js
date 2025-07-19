@@ -1,5 +1,5 @@
 import authenticator from "../services/authenticator.js"
-import { logout } from "../services/authenticator.js"
+import { logout, getUsuario } from "../services/authenticator.js"
 import { auth } from '../firebase.js';
 
 
@@ -64,7 +64,17 @@ try{
     await logout(uid);
     res.status(200).send('Usuário deslogado com sucesso');
 }catch(error){
-    console.log(error)
     res.status(500).send('Ocorreu um erro ao deslogar usuário')
 }
+}
+
+export async function verUsuario(req, res){
+    try{
+    const id = req.params.id
+    const usuario = await getUsuario(id)
+    res.status(200).send(usuario);
+    } catch(error){
+    console.log(error)
+    res.status(500).json({ error: 'Erro ao buscar usuário' });
+    }
 }

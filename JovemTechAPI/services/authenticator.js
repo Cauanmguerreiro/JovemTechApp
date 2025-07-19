@@ -3,6 +3,9 @@ import jwt from 'jsonwebtoken'
 import bcrypt from "bcrypt";
 import dotenv from 'dotenv';
 import admin from 'firebase-admin'
+import { getDoc, doc, getFirestore} from "firebase/firestore";
+import { initializeApp } from "firebase/app";
+import { firebaseConfig } from './firebaseCredenciais.js'
 dotenv.config();
 
 const chaveSecreta = process.env.JWT_SECRET
@@ -72,5 +75,21 @@ export function authenticateToken(req, res, next) {
   });
 }
 
+export async function getUsuario(id) {
+     
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const docRef = doc(db, "usuarios", id);
+    const docSnap = await getDoc(docRef);
 
+    if (docSnap.exists()) {
+        return {
+            id: docSnap.id,
+            ...docSnap.data()
+        };
+    } else {
+        return null;
+    }
+
+}
 export default authenticator;

@@ -132,7 +132,7 @@ export default defineComponent({
 
 
         if (data.token) {
-          localStorage.setItem('token', data.token);
+          localStorage.setItem('token', data.token.token);
 
           $q.notify({
             message: 'Login realizado com sucesso!',
@@ -140,7 +140,7 @@ export default defineComponent({
             position: 'top',
           });
 
-          const decoded = jwtDecode(JSON.stringify(data.token));
+          const decoded = jwtDecode((data.token.token));
        
 
           if (decoded && decoded.email === email.value) {

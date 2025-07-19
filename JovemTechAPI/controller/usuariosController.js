@@ -1,6 +1,7 @@
 import authenticator from "../services/authenticator.js"
 import { logout, getUsuario } from "../services/authenticator.js"
 import { auth } from '../firebase.js';
+import { format, parseISO } from 'date-fns'
 
 
 
@@ -72,6 +73,11 @@ export async function verUsuario(req, res){
     try{
     const id = req.params.id
     const usuario = await getUsuario(id)
+
+    if (usuario && usuario.data_nascimento) {
+      // Se data_nascimento for string ISO, transforma e formata
+    usuario.data_nascimento = format(parseISO(usuario.data_nascimento), 'dd/MM/yyyy')
+    }
     res.status(200).send(usuario);
     } catch(error){
     console.log(error)
